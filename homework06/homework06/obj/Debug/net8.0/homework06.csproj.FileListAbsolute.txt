@@ -1,0 +1,15 @@
+C:\Users\ALEX2\source\repos\homework06\homework06\homework06\bin\Debug\net8.0\homework06.exe
+C:\Users\ALEX2\source\repos\homework06\homework06\homework06\bin\Debug\net8.0\homework06.deps.json
+C:\Users\ALEX2\source\repos\homework06\homework06\homework06\bin\Debug\net8.0\homework06.runtimeconfig.json
+C:\Users\ALEX2\source\repos\homework06\homework06\homework06\bin\Debug\net8.0\homework06.dll
+C:\Users\ALEX2\source\repos\homework06\homework06\homework06\bin\Debug\net8.0\homework06.pdb
+C:\Users\ALEX2\source\repos\homework06\homework06\homework06\obj\Debug\net8.0\homework06.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ALEX2\source\repos\homework06\homework06\homework06\obj\Debug\net8.0\homework06.AssemblyInfoInputs.cache
+C:\Users\ALEX2\source\repos\homework06\homework06\homework06\obj\Debug\net8.0\homework06.AssemblyInfo.cs
+C:\Users\ALEX2\source\repos\homework06\homework06\homework06\obj\Debug\net8.0\homework06.csproj.CoreCompileInputs.cache
+C:\Users\ALEX2\source\repos\homework06\homework06\homework06\obj\Debug\net8.0\homework06.sourcelink.json
+C:\Users\ALEX2\source\repos\homework06\homework06\homework06\obj\Debug\net8.0\homework06.dll
+C:\Users\ALEX2\source\repos\homework06\homework06\homework06\obj\Debug\net8.0\refint\homework06.dll
+C:\Users\ALEX2\source\repos\homework06\homework06\homework06\obj\Debug\net8.0\homework06.pdb
+C:\Users\ALEX2\source\repos\homework06\homework06\homework06\obj\Debug\net8.0\homework06.genruntimeconfig.cache
+C:\Users\ALEX2\source\repos\homework06\homework06\homework06\obj\Debug\net8.0\ref\homework06.dll
