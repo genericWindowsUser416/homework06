@@ -14,12 +14,16 @@
         public double SugarMax { get; private set; }
         public double TotalSells { get; private set; }
         public double WaterUsedPerCoffee { get; private set; } = 0.5;
-
         public double MilkUsedPerCappuccino { get; private set; } = 0.2;
-        public double MilkUsedPerLatte { get; private set; } = 0.25;
+        public double MilkUsedPerLatte { get; private set; } = 0.4;
         public double CoffeeUsedPerCup { get; private set; } = 0.5;
-
         public double LatteCost { get; private set; } = 3;
+        public double CappuccinoCost { get; private set; } = 3;
+        public double AmericanoCost { get; private set; } = 3;
+
+        public double BigCupSize { get; private set; } = 450;
+        public double MediumCupSize { get; private set; } = 250;
+        public double SmallCupSize { get; private set; } = 150;
         public VendingMachine(
             string name,
             double balance,
@@ -55,21 +59,35 @@
             MilkLeft += MilkMax - MilkLeft;
             SugarLeft += SugarMax - SugarLeft;
         }
+
         public bool eatCoins(double userCoinInput, double neededCoins)
         {
             bool result = false;
             if (userCoinInput >= neededCoins)
             {
-                Balance += userCoinInput;
-                result = true;
-                if (userCoinInput > neededCoins)
+                double change = userCoinInput - neededCoins;
+                if (Balance >= change)
                 {
-                    Console.WriteLine($"Ваша сдача {userCoinInput - neededCoins} монет");
+                    Balance += userCoinInput;
+                    result = true;
+
+                    Console.WriteLine($"Ваша сдача {change} монет");
+
+                    Console.WriteLine($"баланс {Balance}");
+                    Balance -= change;
+                    Console.WriteLine($"баланс {Balance}");
+
+                    Console.WriteLine($"продано {TotalSells}");
+                    TotalSells += neededCoins;
+                    Console.WriteLine($"продано {TotalSells}");
                 }
+                else Console.WriteLine("В автомате недостаточно сдачи");
             }
+            else Console.WriteLine("Недостаточно средств");
             return result;
         }
-        public double buyLatte(double userCoinInput)
+
+        public void buyLatte(double userCoinInput)
         {
             if (WaterLeft - WaterUsedPerCoffee >= 0 && CoffeeLeft - CoffeeUsedPerCup >= 0 && MilkLeft - MilkUsedPerLatte >= 0)
             {
@@ -80,11 +98,24 @@
                     MilkLeft -= MilkUsedPerLatte;
                     PrintInfo();
                 }
-                else Console.WriteLine("Недостаточно средств");
             }
-            
+
             else Console.WriteLine("Недостаточно ингредиентов. Пополните запас.");
-            return 0;
+        }
+
+        public void buyCappuccino(double userCoinInput)
+        {
+            if (WaterLeft - WaterUsedPerCoffee >= 0 && CoffeeLeft - CoffeeUsedPerCup >= 0 && MilkLeft - MilkUsedPerCappuccino >= 0)
+            {
+                if (eatCoins(userCoinInput, LatteCost))
+                {
+                    WaterLeft -= WaterUsedPerCoffee;
+                    CoffeeLeft -= CoffeeUsedPerCup;
+                    MilkLeft -= MilkUsedPerLatte;
+                    PrintInfo();
+                }
+            }
+            else Console.WriteLine("Недостаточно ингредиентов. Пополните запас.");
         }
     }
 }
