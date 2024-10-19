@@ -13,17 +13,25 @@
         public double SugarLeft { get; private set; }
         public double SugarMax { get; private set; }
         public double TotalSells { get; private set; }
-        public double WaterUsedPerCoffee { get; private set; } = 0.5;
-        public double MilkUsedPerCappuccino { get; private set; } = 0.2;
-        public double MilkUsedPerLatte { get; private set; } = 0.4;
-        public double CoffeeUsedPerCup { get; private set; } = 0.5;
+
+        public double WaterUsedPerCappuccino { get; private set; } = 3;
+        public double WaterUsedPerLatte { get; private set; } = 4;
+        public double WaterUsedPerAmericano { get; private set; } = 2;
+
+        public double MilkUsedPerCappuccino { get; private set; } = 3;
+        public double MilkUsedPerLatte { get; private set; } = 2;
+
+        public double CoffeeUsedPerCup { get; private set; } = 3;
+
         public double LatteCost { get; private set; } = 3;
         public double CappuccinoCost { get; private set; } = 3;
         public double AmericanoCost { get; private set; } = 3;
 
-        public double BigCupSize { get; private set; } = 450;
-        public double MediumCupSize { get; private set; } = 250;
-        public double SmallCupSize { get; private set; } = 150;
+        public double BigCupSize { get; private set; } = 480;
+        public double MediumCupSize { get; private set; } = 240;
+        public double SmallCupSize { get; private set; } = 120;
+
+        public double SugarPerCuo { get; private set; } = 60;
         public VendingMachine(
             string name,
             double balance,
@@ -54,10 +62,10 @@
 
         public void Refuel()
         {
-            WaterLeft += WaterMax - WaterLeft;
-            CoffeeLeft += CoffeeMax - CoffeeLeft;
-            MilkLeft += MilkMax - MilkLeft;
-            SugarLeft += SugarMax - SugarLeft;
+            WaterLeft = WaterMax;
+            CoffeeLeft = CoffeeMax;
+            MilkLeft = MilkMax;
+            SugarLeft = SugarMax;
         }
 
         public bool eatCoins(double userCoinInput, double neededCoins)
@@ -73,11 +81,9 @@
 
                     Console.WriteLine($"Ваша сдача {change} монет");
 
-                    Console.WriteLine($"баланс {Balance}");
                     Balance -= change;
                     Console.WriteLine($"баланс {Balance}");
 
-                    Console.WriteLine($"продано {TotalSells}");
                     TotalSells += neededCoins;
                     Console.WriteLine($"продано {TotalSells}");
                 }
@@ -87,34 +93,19 @@
             return result;
         }
 
-        public void buyLatte(double userCoinInput)
+        public void buyLatte(double userCoinInput, double cupSize)
         {
-            if (WaterLeft - WaterUsedPerCoffee >= 0 && CoffeeLeft - CoffeeUsedPerCup >= 0 && MilkLeft - MilkUsedPerLatte >= 0)
+            if (WaterLeft - (cupSize / WaterUsedPerLatte) >= 0 && CoffeeLeft - CoffeeUsedPerCup >= 0 && MilkLeft - (cupSize / MilkUsedPerLatte) >= 0)
             {
                 if (eatCoins(userCoinInput, LatteCost))
                 {
-                    WaterLeft -= WaterUsedPerCoffee;
-                    CoffeeLeft -= CoffeeUsedPerCup;
-                    MilkLeft -= MilkUsedPerLatte;
+                    WaterLeft -= (cupSize / WaterUsedPerLatte);
+                    CoffeeLeft -= (cupSize / CoffeeUsedPerCup);
+                    MilkLeft -= (cupSize / MilkUsedPerLatte);
                     PrintInfo();
                 }
             }
 
-            else Console.WriteLine("Недостаточно ингредиентов. Пополните запас.");
-        }
-
-        public void buyCappuccino(double userCoinInput)
-        {
-            if (WaterLeft - WaterUsedPerCoffee >= 0 && CoffeeLeft - CoffeeUsedPerCup >= 0 && MilkLeft - MilkUsedPerCappuccino >= 0)
-            {
-                if (eatCoins(userCoinInput, LatteCost))
-                {
-                    WaterLeft -= WaterUsedPerCoffee;
-                    CoffeeLeft -= CoffeeUsedPerCup;
-                    MilkLeft -= MilkUsedPerLatte;
-                    PrintInfo();
-                }
-            }
             else Console.WriteLine("Недостаточно ингредиентов. Пополните запас.");
         }
     }
