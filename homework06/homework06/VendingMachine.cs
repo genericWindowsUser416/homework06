@@ -22,8 +22,6 @@
         public double MilkUsedPerLatte { get; private set; } = 2;
         public double MilkUsedPerAmericano { get; private set; } = -1;
 
-        public double CoffeeUsedPerCup { get; private set; } = 3;
-
         public double LatteCost { get; private set; } = 1.2;
         public double CappuccinoCost { get; private set; } = 1.1;
         public double AmericanoCost { get; private set; } = 1;
@@ -32,9 +30,9 @@
         public double MediumCupSize { get; private set; } = 240;
         public double SmallCupSize { get; private set; } = 120;
 
+        public double CoffeeUsedPerCup { get; private set; } = 3;
         public double SugarPerCup { get; private set; } = 60;
         public bool doAddSugar { get; private set; } = false;
-
         public double finalCost { get; private set; } = 0;
         public VendingMachine(
             string name,
@@ -57,7 +55,7 @@
 
         public void PrintInfo()
         {
-            Console.WriteLine($"Имя: {Name} \nБаланс: {Balance}\nПродано: {TotalSells}\nВода: {WaterLeft}/{WaterMax}\nКофе: {CoffeeLeft}/{CoffeeMax}\nМолоко: {MilkLeft}/{MilkMax}\nСахар: {SugarLeft}/{SugarMax}");
+            Console.WriteLine($"Имя автомата: {Name}\nБаланс: {Balance}\nПродано: {TotalSells}\nВода: {WaterLeft}/{WaterMax}\nКофе: {CoffeeLeft}/{CoffeeMax}\nМолоко: {MilkLeft}/{MilkMax}\nСахар: {SugarLeft}/{SugarMax}");
         }
 
         public void Refuel()
@@ -135,21 +133,13 @@
 
         public void chooseCoffee()
         {
-            Console.WriteLine($"Выберите кофе (1-3)" +
-                "\nКапучино (1)" +
-                "\nЛатте (2)" +
-                "\nАмерикано (3)");
+            Console.WriteLine($"Выберите кофе (1-3)\nКапучино (1)\nЛатте (2)\nАмерикано (3)");
             double chosenCoffee = Convert.ToDouble(Console.ReadLine());
 
-            Console.WriteLine("Выберите размер порции (1-3)" +
-                "\n120 мл (1)" +
-                "\n240 мл (2)" +
-                "\n480 мл (3)");
+            Console.WriteLine("Выберите размер порции (1-3)\n120 мл (1)\n240 мл (2)\n480 мл (3)");
             double chosenSize = Convert.ToDouble(Console.ReadLine());
 
-            Console.WriteLine($"Добавить сахар?" +
-                "\nДа (1)" +
-                "\nНет (2)");
+            Console.WriteLine($"Добавить сахар?\nДа (1)\nНет (2)");
             doAddSugar = Convert.ToDouble(Console.ReadLine()) == 1;
             switch (chosenSize)
             {
