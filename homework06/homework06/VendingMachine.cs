@@ -66,6 +66,14 @@
             SugarLeft = SugarMax;
         }
 
+        public void giveChangeAndCountSells(double userCoinInput, double change, double neededCoins)
+        {
+            Balance += userCoinInput;
+            if (change > 0) Console.WriteLine($"Ваша сдача: {change}");
+            Console.WriteLine("Кофе приготовлен успешно");
+            Balance -= change;
+            TotalSells += neededCoins;
+        }
         public bool eatCoins(double userCoinInput, double neededCoins)
         {
             bool result = false;
@@ -74,13 +82,8 @@
                 double change = userCoinInput - neededCoins;
                 if (Balance >= change)
                 {
-                    Balance += userCoinInput;
                     result = true;
-
-                    if (change > 0) Console.WriteLine($"Ваша сдача: {change}");
-                    Console.WriteLine("Кофе приготовлен успешно");
-                    Balance -= change;
-                    TotalSells += neededCoins;
+                    giveChangeAndCountSells(userCoinInput, change, neededCoins);
                 }
                 else Console.WriteLine("В автомате недостаточно сдачи");
             }
