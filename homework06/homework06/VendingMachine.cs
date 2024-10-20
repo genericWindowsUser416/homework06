@@ -100,11 +100,6 @@
             }
         }
 
-        public void ingredientsError()
-        {
-            Console.WriteLine($"Недостаточно ингредиентов для кофе. Пополните запас.");
-            PrintInfo();
-        }
 
         public bool checkIngredients(double CoffeeCost, double cupSize, double WaterUsedPerCup, double MilkUsedPerCup, double SugarForThisCup)
         {
@@ -126,7 +121,8 @@
             else
             {
                 resultOfCheck = false;
-                ingredientsError();
+                Console.WriteLine($"Недостаточно ингредиентов для кофе. Пополните запас.");
+                PrintInfo();
             }
             return resultOfCheck;
         }
