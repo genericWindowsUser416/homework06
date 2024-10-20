@@ -24,9 +24,9 @@
 
         public double CoffeeUsedPerCup { get; private set; } = 3;
 
-        public double LatteCost { get; private set; } = 3;
-        public double CappuccinoCost { get; private set; } = 3;
-        public double AmericanoCost { get; private set; } = 3;
+        public double LatteCost { get; private set; } = 1.4;
+        public double CappuccinoCost { get; private set; } = 1.2;
+        public double AmericanoCost { get; private set; } = 1;
 
         public double BigCupSize { get; private set; } = 480;
         public double MediumCupSize { get; private set; } = 240;
@@ -34,6 +34,8 @@
 
         public double SugarPerCup { get; private set; } = 60;
         public bool doAddSugar { get; private set; } = false;
+
+        public double finalCost { get; private set; } = 0;
         public VendingMachine(
             string name,
             double balance,
@@ -55,7 +57,7 @@
 
         public void PrintInfo()
         {
-            Console.WriteLine($"Имя: {Name} \nБаланс: {Balance}\nПродано: {TotalSells}\nВода: {WaterLeft}\nКофе: {CoffeeLeft}\nМолоко: {MilkLeft}\nСахар: {SugarLeft}");
+            Console.WriteLine($"Имя: {Name} \nБаланс: {Balance}\nПродано: {TotalSells}\nВода: {WaterLeft}/{WaterMax}\nКофе: {CoffeeLeft}/{CoffeeMax}\nМолоко: {MilkLeft}/{MilkMax}\nСахар: {SugarLeft}/{SugarMax}");
         }
 
         public void Refuel()
@@ -90,7 +92,6 @@
 
         public void buyCoffee(double userCoinInput, double cupSize, double WaterForThisCup, double CoffeeForThisCup, double MilkForThisCup, double CoffeeCost)
         {
-
             if (checkIngredients(userCoinInput, CoffeeCost, WaterLeft, cupSize, WaterForThisCup, MilkForThisCup))
             {
                 WaterLeft -= (cupSize / WaterForThisCup);
@@ -99,7 +100,14 @@
                 if (doAddSugar) SugarLeft -= (cupSize / SugarPerCup);
                 PrintInfo();
             }
-            else Console.WriteLine("Недостаточно ингредиентов. Пополните запас.");
+            else ingredientsError();
+        }
+
+        public void ingredientsError()
+        {
+            Console.WriteLine($"Недостаточно ингредиентов для кофе. Пополните запас.");
+            PrintInfo();
+
         }
 
         public bool checkIngredients(double userCoinInput, double CoffeeCost, double WaterLeft, double cupSize, double WaterUsedPerCup, double MilkUsedPerCup)
@@ -129,16 +137,32 @@
             Console.WriteLine($"Добавить сахар?" +
                 "\nДа (1)" +
                 "\nНет (2)");
-
             doAddSugar = Convert.ToDouble(Console.ReadLine()) == 1;
 
             if (chosenSize == 1) chosenSize = SmallCupSize;
             else if (chosenSize == 2) chosenSize = MediumCupSize;
             else if (chosenSize == 3) chosenSize = BigCupSize;
 
-            if (chosenCoffee == 1) buyCoffee(Convert.ToDouble(Console.ReadLine()), chosenSize, WaterUsedPerCappuccino, CoffeeUsedPerCup, MilkUsedPerCappuccino, CappuccinoCost);
-            else if (chosenCoffee == 2) buyCoffee(Convert.ToDouble(Console.ReadLine()), chosenSize, WaterUsedPerLatte, CoffeeUsedPerCup, MilkUsedPerLatte, LatteCost);
-            else if (chosenCoffee == 3) buyCoffee(Convert.ToDouble(Console.ReadLine()), chosenSize, WaterUsedPerAmericano, CoffeeUsedPerCup, MilkUsedPerAmericano, AmericanoCost);
+
+            if (chosenCoffee == 1)
+            {
+                finalCost = chosenSize * CappuccinoCost;
+                Console.WriteLine($"Стоимость: {finalCost}");
+                buyCoffee(Convert.ToDouble(Console.ReadLine()), chosenSize, WaterUsedPerCappuccino, CoffeeUsedPerCup, MilkUsedPerCappuccino, finalCost);
+            }
+            else if (chosenCoffee == 2)
+            {
+                finalCost = chosenSize * LatteCost;
+                Console.WriteLine($"Стоимость: {finalCost}");
+                buyCoffee(Convert.ToDouble(Console.ReadLine()), chosenSize, WaterUsedPerLatte, CoffeeUsedPerCup, MilkUsedPerLatte, finalCost);
+            }
+
+            else if (chosenCoffee == 3)
+            {
+                finalCost = chosenSize * AmericanoCost;
+                Console.WriteLine($"Стоимость: {finalCost}");
+                buyCoffee(Convert.ToDouble(Console.ReadLine()), chosenSize, WaterUsedPerAmericano, CoffeeUsedPerCup, MilkUsedPerAmericano, finalCost);
+            }
         }
     }
 }
