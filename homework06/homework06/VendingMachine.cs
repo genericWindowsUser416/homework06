@@ -20,6 +20,7 @@
 
         public double MilkUsedPerCappuccino { get; private set; } = 3;
         public double MilkUsedPerLatte { get; private set; } = 2;
+        public double MilkUsedPerAmericano { get; private set; } = -1;
 
         public double CoffeeUsedPerCup { get; private set; } = 3;
 
@@ -35,24 +36,20 @@
         public VendingMachine(
             string name,
             double balance,
-            double waterleft, double watermax,
-            double coffeeleft, double coffeemax,
-            double milkleft, double milkmax,
-            double sugarleft, double sugarmax,
+            double watermax,
+            double coffeemax,
+            double milkmax,
+            double sugarmax,
             double totalsells)
         {
             if (balance >= 0) Balance = balance;
             else Balance = 0;
             Name = name;
-            WaterLeft = waterleft;
-            CoffeeLeft = coffeeleft;
-            MilkLeft = milkleft;
-            SugarLeft = sugarleft;
+            WaterLeft = WaterMax = watermax;
+            CoffeeLeft = CoffeeMax = coffeemax;
+            MilkLeft = MilkMax = milkmax;
+            SugarLeft = SugarMax = sugarmax;
             TotalSells = totalsells;
-            WaterMax = watermax;
-            CoffeeMax = coffeemax;
-            MilkMax = milkmax;
-            SugarMax = sugarmax;
         }
 
         public void PrintInfo()
@@ -136,7 +133,7 @@
 
             if (chosenCoffee == 1) buyCoffee(Convert.ToDouble(Console.ReadLine()), chosenSize, WaterUsedPerCappuccino, CoffeeUsedPerCup, MilkUsedPerCappuccino, CappuccinoCost);
             if (chosenCoffee == 2) buyCoffee(Convert.ToDouble(Console.ReadLine()), chosenSize, WaterUsedPerLatte, CoffeeUsedPerCup, MilkUsedPerLatte, LatteCost);
-            if (chosenCoffee == 3) buyCoffee(Convert.ToDouble(Console.ReadLine()), chosenSize, WaterUsedPerAmericano, CoffeeUsedPerCup, -1, AmericanoCost);
+            if (chosenCoffee == 3) buyCoffee(Convert.ToDouble(Console.ReadLine()), chosenSize, WaterUsedPerAmericano, CoffeeUsedPerCup, MilkUsedPerAmericano, AmericanoCost);
         }
     }
 }
