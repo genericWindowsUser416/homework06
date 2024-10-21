@@ -71,7 +71,8 @@
         public void giveChangeAndCountSells(double userCoinInput, double change, double neededCoins)
         {
             Balance += userCoinInput;
-            if (change > 0) Console.WriteLine($"Ваша сдача: {change}");
+            if (change > 0)
+                Console.WriteLine($"Ваша сдача: {change}");
             Console.WriteLine("Кофе приготовлен успешно");
             Balance -= change;
             TotalSells += neededCoins;
@@ -88,9 +89,11 @@
                     result = true;
                     giveChangeAndCountSells(userCoinInput, change, neededCoins);
                 }
-                else Console.WriteLine("В автомате недостаточно сдачи");
+                else
+                    Console.WriteLine("В автомате недостаточно сдачи");
             }
-            else Console.WriteLine("Внесено недостаточно средств");
+            else
+                Console.WriteLine("Внесено недостаточно средств");
             return result;
         }
 
@@ -110,7 +113,8 @@
         {
             if (WaterLeft - (cupSize / WaterUsedPerCup) >= 0 && (CoffeeLeft - CoffeeUsedPerCup) >= 0 && MilkLeft - (cupSize / MilkUsedPerCup) >= 0 && SugarLeft - (cupSize / SugarForThisCup) >= 0)
                 return true;
-            else return false;
+            else
+                return false;
         }
 
         public bool checkIfEnoughIngredientsAndCoins(double userCoinInput, double cupSize, double WaterForThisCup, double CoffeeForThisCup, double MilkForThisCup, double CoffeeCost, double SugarForThisCup)
@@ -155,7 +159,7 @@
                     break;
                 default:
                     chosenSize = MediumCupSize;
-                    return;
+                    break;
             }
             double SugarForThisCup = -1;
             if (doAddSugar)
@@ -186,7 +190,7 @@
                     break;
                 default:
                     Console.WriteLine("Неверный выбор кофе.");
-                    return;
+                    break;
             }
             finalCost += chosenSize * cost;
             Console.WriteLine($"Стоимость: {finalCost}");
