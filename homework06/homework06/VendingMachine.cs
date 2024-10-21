@@ -12,7 +12,7 @@
         public double MilkMax { get; private set; }
         public double SugarLeft { get; private set; }
         public double SugarMax { get; private set; }
-        public double TotalSells { get; private set; }
+        public double TotalSells { get; private set; } = 0;
 
         public double WaterUsedPerCappuccino { get; private set; } = 3;
         public double WaterUsedPerLatte { get; private set; } = 4;
@@ -40,17 +40,19 @@
             double watermax,
             double coffeemax,
             double milkmax,
-            double sugarmax,
-            double totalsells)
+            double sugarmax)
         {
             if (balance >= 0) Balance = balance;
             else Balance = 0;
             Name = name;
-            WaterLeft = WaterMax = watermax;
-            CoffeeLeft = CoffeeMax = coffeemax;
-            MilkLeft = MilkMax = milkmax;
-            SugarLeft = SugarMax = sugarmax;
-            TotalSells = totalsells;
+            WaterMax = watermax;
+            WaterLeft = watermax;
+            CoffeeMax = coffeemax;
+            CoffeeLeft = coffeemax;
+            MilkMax = milkmax;
+            MilkLeft = milkmax;
+            SugarMax = sugarmax;
+            SugarLeft = sugarmax;
         }
 
         public void PrintInfo()
@@ -74,6 +76,7 @@
             Balance -= change;
             TotalSells += neededCoins;
         }
+
         public bool eatCoins(double userCoinInput, double neededCoins)
         {
             bool result = false;
@@ -102,7 +105,6 @@
                 PrintInfo();
             }
         }
-
 
         public bool checkIngredients(double CoffeeCost, double cupSize, double WaterUsedPerCup, double MilkUsedPerCup, double SugarForThisCup)
         {
