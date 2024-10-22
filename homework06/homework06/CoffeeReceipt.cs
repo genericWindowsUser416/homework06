@@ -7,5 +7,6 @@
         public double Coffee { get; set; }
         public double Milk { get; set; }
         public double Sugar { get; set; }
+        public double Cost { get; set; }
     }
 }

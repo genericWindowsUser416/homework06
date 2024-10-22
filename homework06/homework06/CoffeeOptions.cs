@@ -16,21 +16,24 @@
                     Name = "Капучино",
                     Water = 1,
                     Coffee = 1,
-                    Milk = 1
+                    Milk = 1,
+                    Cost = 240
                 },
                 new CoffeeReceipt()
                 {
                     Name = "Латте",
                     Water = 1,
                     Coffee = 1,
-                    Milk = 3
+                    Milk = 3,
+                    Cost = 240
                 },
                 new CoffeeReceipt()
                 {
                     Name = "Американо",
                     Water = 1,
                     Coffee = 1,
-                    Milk = 0
+                    Milk = 0,
+                    Cost = 220
                 }
             };
         }

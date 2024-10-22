@@ -4,7 +4,8 @@
     {
         static void Main(string[] args)
         {
-            VendingMachine machineV1 = new VendingMachine(CoffeeOptions.GetBaseCoffeeRecieptList(), "FirstMachine", 500, 5000.0, 3400.0, 4000.0, 1000.0);
+            //, "FirstMachine", 500, 5000.0, 3400.0, 4000.0, 1000.0
+            VendingMachine machineV1 = new VendingMachine(CoffeeOptions.GetBaseCoffeeRecieptList());
             machineV1.chooseCoffee();
             machineV1.Refuel();
         }
