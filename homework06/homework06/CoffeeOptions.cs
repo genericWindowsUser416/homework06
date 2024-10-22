@@ -17,7 +17,7 @@
                     Water = 1,
                     Coffee = 1,
                     Milk = 1,
-                    Cost = 240
+                    Cost = 180
                 },
                 new CoffeeReceipt()
                 {
@@ -25,7 +25,7 @@
                     Water = 1,
                     Coffee = 1,
                     Milk = 3,
-                    Cost = 240
+                    Cost = 200
                 },
                 new CoffeeReceipt()
                 {
@@ -33,7 +33,7 @@
                     Water = 1,
                     Coffee = 1,
                     Milk = 0,
-                    Cost = 220
+                    Cost = 160
                 }
             };
         }
