@@ -1,6 +1,6 @@
 ﻿namespace homework06
 {
-    internal class CoffeeReceipt
+    public class CoffeeReceipt
     {
         public string? Name { get; set; }
         public double Water { get; set; }

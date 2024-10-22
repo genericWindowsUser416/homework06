@@ -30,7 +30,8 @@
         public double SugarPerCup { get; private set; } = 60;
         public bool doAddSugar { get; private set; } = false;
         public double finalCost { get; private set; } = 0;
-        public VendingMachine(
+        private List<CoffeeReceipt> _coffeeReceipts { get; set; }
+        public VendingMachine(List<CoffeeReceipt> coffeeReceipts,
             string name,
             double balance,
             double watermax,
@@ -38,30 +39,27 @@
             double milkmax,
             double sugarmax)
         {
+            _coffeeReceipts = _coffeeReceipts;
             if (balance >= 0) Balance = balance;
             else Balance = 0;
             Name = name;
-            WaterMax = watermax;
-            WaterLeft = watermax;
-            CoffeeMax = coffeemax;
-            CoffeeLeft = coffeemax;
-            MilkMax = milkmax;
-            MilkLeft = milkmax;
-            SugarMax = sugarmax;
-            SugarLeft = sugarmax;
+            WaterLeft = CoffeeOptions.WaterMax;
+            CoffeeLeft = CoffeeOptions.CoffeeMax;
+            MilkLeft = CoffeeOptions.MilkMax;
+            SugarLeft = CoffeeOptions.SugarMax;
         }
 
         public void PrintInfo()
         {
-            Console.WriteLine($"Имя автомата: {Name}\nБаланс: {Balance}\nПродано: {TotalSells}\nВода: {WaterLeft}/{WaterMax}\nКофе: {CoffeeLeft}/{CoffeeMax}\nМолоко: {MilkLeft}/{MilkMax}\nСахар: {SugarLeft}/{SugarMax}");
+            Console.WriteLine($"Имя автомата: {Name}\nБаланс: {Balance}\nПродано: {TotalSells}\nВода: {WaterLeft}/{CoffeeOptions.WaterMax}\nКофе: {CoffeeLeft}/{CoffeeOptions.CoffeeMax}\nМолоко: {MilkLeft}/{CoffeeOptions.MilkMax}\nСахар: {SugarLeft}/{CoffeeOptions.SugarMax}");
         }
 
         public void Refuel()
         {
-            WaterLeft = WaterMax;
-            CoffeeLeft = CoffeeMax;
-            MilkLeft = MilkMax;
-            SugarLeft = SugarMax;
+            WaterLeft = CoffeeOptions.WaterMax;
+            CoffeeLeft = CoffeeOptions.CoffeeMax;
+            MilkLeft = CoffeeOptions.MilkMax;
+            SugarLeft = CoffeeOptions.SugarMax;
         }
 
         public void giveChangeAndCountSells(double userCoinInput, double change, double neededCoins)
