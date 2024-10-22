@@ -5,13 +5,9 @@
         public string? Name { get; private set; }
         public double Balance { get; private set; }
         public double WaterLeft { get; private set; }
-        public double WaterMax { get; private set; }
         public double CoffeeLeft { get; private set; }
-        public double CoffeeMax { get; private set; }
         public double MilkLeft { get; private set; }
-        public double MilkMax { get; private set; }
         public double SugarLeft { get; private set; }
-        public double SugarMax { get; private set; }
         public double TotalSells { get; private set; } = 0;
 
         public double WaterUsedPerCappuccino { get; private set; } = 3;
