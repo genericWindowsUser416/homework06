@@ -10,12 +10,13 @@
         public double SugarLeft { get; private set; }
         public double TotalSells { get; private set; } = 0;
         public double LatteCost { get; private set; } = 1.2;
-        public double SugarPerCup { get; private set; } = 1;
+        public double SugarPerCup { get; private set; } = 5;
         public double CappuccinoCost { get; private set; } = 1.1;
         public double AmericanoCost { get; private set; } = 1;
         public double BigCupSize { get; private set; } = 1.4;
         public double MediumCupSize { get; private set; } = 1.2;
         public double SmallCupSize { get; private set; } = 1;
+        public double SugarForThisCup { get; private set; } = -1;
         public bool doAddSugar { get; private set; } = false;
         public double finalCost { get; private set; } = 0;
         private List<CoffeeReceipt> _coffeeReceipts { get; set; }
@@ -55,12 +56,13 @@
             CoffeeReceipt crnt = CoffeeOptions.GetBaseCoffeeRecieptList()[chosenCoffee - 1];
             if (WaterLeft >= crnt.Water && CoffeeLeft >= crnt.Coffee && MilkLeft >= crnt.Milk)
             {
-                Console.WriteLine(WaterLeft);
                 WaterLeft -= crnt.Water;
-                Console.WriteLine(WaterLeft);
                 CoffeeLeft -= crnt.Coffee;
                 MilkLeft -= crnt.Milk;
-                //тут ещё про сахар добавить Обязательно
+                if (SugarForThisCup > 0)
+                {
+                    SugarLeft -= SugarForThisCup;
+                }
                 Balance += userCoinInput;
                 if (change > 0)
                 {
@@ -77,15 +79,13 @@
             PrintInfo();
         }
 
-        public bool eatCoins(double userCoinInput, double neededCoins, int chosenCoffee)
+        public void eatCoins(double userCoinInput, double neededCoins, int chosenCoffee)
         {
-            bool result = false;
             if (userCoinInput >= neededCoins)
             {
                 double change = userCoinInput - neededCoins;
                 if (Balance >= change)
                 {
-                    result = true;
                     giveChangeAndCountSells(userCoinInput, change, neededCoins, chosenCoffee);
                 }
                 else
@@ -96,14 +96,6 @@
             else
             {
                 Console.WriteLine("Внесено недостаточно средств");
-            }
-            return result;
-        }
-
-        public void ifEnoughCoinsThenSell(double userCoinInput, double CoffeeCost, int chosenCoffee)
-        {
-            if (!eatCoins(userCoinInput, CoffeeCost, chosenCoffee))
-            {
                 PrintInfo();
             }
         }
@@ -115,9 +107,6 @@
 
             Console.WriteLine("Выберите размер порции (1-3)\n120 мл (1)\n240 мл (2)\n480 мл (3)");
             double chosenSize = Convert.ToDouble(Console.ReadLine());
-
-            Console.WriteLine($"Добавить сахар?\nДа (1)\nНет (2)");
-            doAddSugar = Convert.ToDouble(Console.ReadLine()) == 1;
             switch (chosenSize)
             {
                 case 1:
@@ -133,15 +122,17 @@
                     chosenSize = MediumCupSize;
                     break;
             }
-            double SugarForThisCup = -1;
-            if (doAddSugar)
+
+            Console.WriteLine($"Добавить сахар?\nДа (1)\nНет (2)");
+            if (Convert.ToDouble(Console.ReadLine()) == 1)
             {
-                SugarForThisCup = chosenSize / SugarPerCup;
+                SugarForThisCup = chosenSize * SugarPerCup;
                 finalCost += SugarForThisCup;
             }
+
             finalCost += chosenSize * CoffeeOptions.GetBaseCoffeeRecieptList()[chosenCoffee - 1].Cost;
             Console.WriteLine($"Стоимость: {finalCost}");
-            ifEnoughCoinsThenSell(Convert.ToDouble(Console.ReadLine()), finalCost, chosenCoffee);
+            eatCoins(Convert.ToDouble(Console.ReadLine()), finalCost, chosenCoffee);
         }
     }
 }
