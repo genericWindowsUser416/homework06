@@ -14,24 +14,24 @@
                 new CoffeeReceipt()
                 {
                     Name = "Капучино",
-                    Water = 1,
-                    Coffee = 1,
-                    Milk = 1,
+                    Water = 50,
+                    Coffee = 50,
+                    Milk = 100,
                     Cost = 180
                 },
                 new CoffeeReceipt()
                 {
                     Name = "Латте",
-                    Water = 1,
-                    Coffee = 1,
-                    Milk = 3,
+                    Water = 50,
+                    Coffee = 50,
+                    Milk = 150,
                     Cost = 200
                 },
                 new CoffeeReceipt()
                 {
                     Name = "Американо",
-                    Water = 1,
-                    Coffee = 1,
+                    Water = 50,
+                    Coffee = 50,
                     Milk = 0,
                     Cost = 160
                 }

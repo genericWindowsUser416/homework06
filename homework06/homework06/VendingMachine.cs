@@ -50,20 +50,34 @@
             SugarLeft = CoffeeOptions.SugarMax;
         }
 
-        public void giveChangeAndCountSells(double userCoinInput, double change, double neededCoins)
+        public void giveChangeAndCountSells(double userCoinInput, double change, double neededCoins, int chosenCoffee)
         {
-            Balance += userCoinInput;
-            if (change > 0) 
-            { 
-                Console.WriteLine($"Ваша сдача: {change}");
+            CoffeeReceipt crnt = CoffeeOptions.GetBaseCoffeeRecieptList()[chosenCoffee - 1];
+            if (WaterLeft >= crnt.Water && CoffeeLeft >= crnt.Coffee && MilkLeft >= crnt.Milk)
+            {
+                Console.WriteLine(WaterLeft);
+                WaterLeft -= crnt.Water;
+                Console.WriteLine(WaterLeft);
+                CoffeeLeft -= crnt.Coffee;
+                MilkLeft -= crnt.Milk;
+                //тут ещё про сахар добавить Обязательно
+                Balance += userCoinInput;
+                if (change > 0)
+                {
+                    Console.WriteLine($"Ваша сдача: {change}");
+                }
+                Console.WriteLine("Кофе приготовлен успешно");
+                Balance -= change;
+                TotalSells += neededCoins;
             }
-            Console.WriteLine("Кофе приготовлен успешно");
-            Balance -= change;
-            TotalSells += neededCoins;
+            else
+            {
+                Console.WriteLine("Недостаточно ингредиентов для кофе");
+            }
             PrintInfo();
         }
 
-        public bool eatCoins(double userCoinInput, double neededCoins)
+        public bool eatCoins(double userCoinInput, double neededCoins, int chosenCoffee)
         {
             bool result = false;
             if (userCoinInput >= neededCoins)
@@ -72,7 +86,7 @@
                 if (Balance >= change)
                 {
                     result = true;
-                    giveChangeAndCountSells(userCoinInput, change, neededCoins);
+                    giveChangeAndCountSells(userCoinInput, change, neededCoins, chosenCoffee);
                 }
                 else
                 {
@@ -86,41 +100,11 @@
             return result;
         }
 
-        public bool ifEnoughCoinsThenSell(double userCoinInput, double CoffeeCost)
+        public void ifEnoughCoinsThenSell(double userCoinInput, double CoffeeCost, int chosenCoffee)
         {
-            bool resultOfCheck = false;
-            if (eatCoins(userCoinInput, CoffeeCost))
+            if (!eatCoins(userCoinInput, CoffeeCost, chosenCoffee))
             {
-                resultOfCheck = true;
-            }
-            else
-            {
-                resultOfCheck = false;
                 PrintInfo();
-            }
-            return resultOfCheck;
-        }
-
-        public void Sell(int coffeeNumber)
-        {
-            coffeeNumber = coffeeNumber - 1;
-            if (coffeeNumber >= 0 && coffeeNumber < CoffeeOptions.GetBaseCoffeeRecieptList().Count)
-            {
-                CoffeeReceipt crnt = CoffeeOptions.GetBaseCoffeeRecieptList()[coffeeNumber];
-                if (WaterLeft >= crnt.Water && CoffeeLeft >= crnt.Coffee && MilkLeft >= crnt.Milk)
-                {
-
-                    WaterLeft -= crnt.Water;
-                    CoffeeLeft -= crnt.Coffee;
-                    MilkLeft -= crnt.Milk;
-                    //тут ещё про сахар добавить Обязательно
-                    Console.WriteLine($"отняли {crnt.Water} воды от {WaterLeft}");
-                    PrintInfo();
-                }
-            }
-            else
-            {
-                Console.WriteLine("Неверный выбор кофе.");
             }
         }
 
@@ -157,7 +141,7 @@
             }
             finalCost += chosenSize * CoffeeOptions.GetBaseCoffeeRecieptList()[chosenCoffee - 1].Cost;
             Console.WriteLine($"Стоимость: {finalCost}");
-            ifEnoughCoinsThenSell(Convert.ToDouble(Console.ReadLine()), finalCost);
+            ifEnoughCoinsThenSell(Convert.ToDouble(Console.ReadLine()), finalCost, chosenCoffee);
         }
     }
 }
