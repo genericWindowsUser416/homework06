@@ -2,27 +2,27 @@
 {
     public class VendingMachine
     {
-        public string? Name { get; private set; }
-        public double Balance { get; private set; }
-        public double WaterLeft { get; private set; }
-        public double CoffeeLeft { get; private set; }
-        public double MilkLeft { get; private set; }
-        public double SugarLeft { get; private set; }
-        public double TotalSells { get; private set; } = 0;
-        public double LatteCost { get; private set; } = 1.2;
-        public double SugarPerCup { get; private set; } = 5;
-        public double CappuccinoCost { get; private set; } = 1.1;
-        public double AmericanoCost { get; private set; } = 1;
-        public double BigCupSize { get; private set; } = 1.4;
-        public double MediumCupSize { get; private set; } = 1.2;
-        public double SmallCupSize { get; private set; } = 1;
-        public double SugarForThisCup { get; private set; } = -1;
-        public bool doAddSugar { get; private set; } = false;
-        public double finalCost { get; private set; } = 0;
-        private List<CoffeeReceipt> _coffeeReceipts { get; set; }
-        public VendingMachine(List<CoffeeReceipt> coffeeReceipts, string inputtedName, double balance)
+        protected string? Name { get; set; }
+        protected double Balance { get; set; }
+        protected double WaterLeft { get; set; }
+        protected double CoffeeLeft { get; set; }
+        protected double MilkLeft { get; set; }
+        protected double SugarLeft { get; set; }
+        protected double TotalSells { get; private set; } = 0;
+        protected double LatteCost { get; private set; } = 1.2;
+        protected double SugarPerCup { get; private set; } = 5;
+        protected double CappuccinoCost { get; private set; } = 1.1;
+        protected double AmericanoCost { get; private set; } = 1;
+        protected double BigCupSize { get; private set; } = 1.4;
+        protected double MediumCupSize { get; private set; } = 1.2;
+        protected double SmallCupSize { get; private set; } = 1;
+        protected double SugarForThisCup { get; private set; } = -1;
+        protected bool doAddSugar { get; private set; } = false;
+        protected double finalCost { get; private set; } = 0;
+        protected List<CoffeeReceipt> _coffeeReceipts { get; set; }
+        public VendingMachine(string inputtedName, double balance)
         {
-            _coffeeReceipts = _coffeeReceipts;
+            // _coffeeReceipts = _coffeeReceipts;
             if (balance > 0)
             {
                 Balance = balance;
@@ -38,22 +38,19 @@
             SugarLeft = CoffeeOptions.SugarMax;
         }
 
-        public void PrintInfo()
+        public virtual void PrintInfo()
         {
-            Console.WriteLine($"Имя автомата: {Name}\nБаланс: {Balance}\nПродано: {TotalSells}\nВода: {WaterLeft}/{CoffeeOptions.WaterMax}\nКофе: {CoffeeLeft}/{CoffeeOptions.CoffeeMax}\nМолоко: {MilkLeft}/{CoffeeOptions.MilkMax}\nСахар: {SugarLeft}/{CoffeeOptions.SugarMax}");
+            Console.WriteLine($"Имя автомата: {Name}\nБаланс: {Balance}\nПродано: {TotalSells}");
         }
 
-        public void Refuel()
+        public virtual void Refuel()
         {
-            WaterLeft = CoffeeOptions.WaterMax;
-            CoffeeLeft = CoffeeOptions.CoffeeMax;
-            MilkLeft = CoffeeOptions.MilkMax;
-            SugarLeft = CoffeeOptions.SugarMax;
+
         }
 
         public void giveChangeAndCountSells(double userCoinInput, double change, double neededCoins, int chosenCoffee)
         {
-            CoffeeReceipt crnt = CoffeeOptions.GetBaseCoffeeRecieptList()[chosenCoffee - 1];
+            CoffeeReceipt crnt = CoffeeOptions.GetBaseCoffeeReceiptList()[chosenCoffee - 1];
             if (WaterLeft >= crnt.Water && CoffeeLeft >= crnt.Coffee && MilkLeft >= crnt.Milk)
             {
                 WaterLeft -= crnt.Water;
@@ -74,7 +71,7 @@
             }
             else
             {
-                Console.WriteLine("Недостаточно ингредиентов для кофе");
+                Console.WriteLine("Недостаточно ингредиентов для напитка");
             }
             PrintInfo();
         }
@@ -130,7 +127,7 @@
                 finalCost += SugarForThisCup;
             }
 
-            finalCost += chosenSize * CoffeeOptions.GetBaseCoffeeRecieptList()[chosenCoffee - 1].Cost;
+            finalCost += chosenSize * CoffeeOptions.GetBaseCoffeeReceiptList()[chosenCoffee - 1].Cost;
             Console.WriteLine($"Стоимость: {finalCost}");
             eatCoins(Convert.ToDouble(Console.ReadLine()), finalCost, chosenCoffee);
         }

@@ -6,8 +6,7 @@
         public const double CoffeeMax = 1000;
         public const double MilkMax = 1000;
         public const double SugarMax = 1000;
-
-        public static List<CoffeeReceipt> GetBaseCoffeeRecieptList()
+        public static List<CoffeeReceipt> GetBaseCoffeeReceiptList()
         {
             return new List<CoffeeReceipt>()
             {
