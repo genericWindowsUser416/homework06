@@ -8,7 +8,7 @@
         protected double CoffeeLeft { get; set; }
         protected double MilkLeft { get; set; }
         protected double SugarLeft { get; set; }
-        protected double TotalSells { get; private set; } = 0;
+        protected double TotalSells { get; set; } = 0;
         protected double LatteCost { get; private set; } = 1.2;
         protected double SugarPerCup { get; private set; } = 5;
         protected double CappuccinoCost { get; private set; } = 1.1;
@@ -32,10 +32,6 @@
                 Balance = 0;
             }
             Name = inputtedName;
-            WaterLeft = CoffeeOptions.WaterMax;
-            CoffeeLeft = CoffeeOptions.CoffeeMax;
-            MilkLeft = CoffeeOptions.MilkMax;
-            SugarLeft = CoffeeOptions.SugarMax;
         }
 
         public virtual void PrintInfo()
@@ -48,32 +44,8 @@
 
         }
 
-        public void giveChangeAndCountSells(double userCoinInput, double change, double neededCoins, int chosenCoffee)
-        {
-            CoffeeReceipt crnt = CoffeeOptions.GetBaseCoffeeReceiptList()[chosenCoffee - 1];
-            if (WaterLeft >= crnt.Water && CoffeeLeft >= crnt.Coffee && MilkLeft >= crnt.Milk)
-            {
-                WaterLeft -= crnt.Water;
-                CoffeeLeft -= crnt.Coffee;
-                MilkLeft -= crnt.Milk;
-                if (SugarForThisCup > 0)
-                {
-                    SugarLeft -= SugarForThisCup;
-                }
-                Balance += userCoinInput;
-                if (change > 0)
-                {
-                    Console.WriteLine($"Ваша сдача: {change}");
-                }
-                Console.WriteLine("Кофе приготовлен успешно");
-                Balance -= change;
-                TotalSells += neededCoins;
-            }
-            else
-            {
-                Console.WriteLine("Недостаточно ингредиентов для напитка");
-            }
-            PrintInfo();
+        public virtual void giveChangeAndCountSells(double userCoinInput, double change, double neededCoins, int chosenCoffee)
+        { 
         }
 
         public void eatCoins(double userCoinInput, double neededCoins, int chosenCoffee)
@@ -97,9 +69,9 @@
             }
         }
 
-        public void chooseCoffee()
+        public void chooseDrink()
         {
-            Console.WriteLine($"Выберите кофе (1-3)\nКапучино (1)\nЛатте (2)\nАмерикано (3)");
+            Console.WriteLine($"Выберите напиток (1-3)\nКапучино (1)\nЛатте (2)\nАмерикано (3)");
             int chosenCoffee = Convert.ToInt32(Console.ReadLine());
 
             Console.WriteLine("Выберите размер порции (1-3)\n120 мл (1)\n240 мл (2)\n480 мл (3)");

@@ -9,7 +9,7 @@
             // machineV1.Refuel();
 
             VendingMachine_Coffee machineV2 = new VendingMachine_Coffee(CoffeeOptions.GetBaseCoffeeReceiptList(), "Кофейня02", 600);
-            machineV2.chooseCoffee();
+            machineV2.chooseDrink();
         }
     }
 }

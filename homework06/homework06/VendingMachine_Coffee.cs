@@ -21,5 +21,32 @@
             MilkLeft = CoffeeOptions.MilkMax;
             SugarLeft = CoffeeOptions.SugarMax;
         }
+        public override void giveChangeAndCountSells(double userCoinInput, double change, double neededCoins, int chosenCoffee)
+        {
+            CoffeeReceipt crnt = CoffeeOptions.GetBaseCoffeeReceiptList()[chosenCoffee - 1];
+            if (WaterLeft >= crnt.Water && CoffeeLeft >= crnt.Coffee && MilkLeft >= crnt.Milk)
+            {
+                WaterLeft -= crnt.Water;
+                CoffeeLeft -= crnt.Coffee;
+                MilkLeft -= crnt.Milk;
+                if (SugarForThisCup > 0)
+                {
+                    SugarLeft -= SugarForThisCup;
+                }
+                Balance += userCoinInput;
+                if (change > 0)
+                {
+                    Console.WriteLine($"Ваша сдача: {change}");
+                }
+                Console.WriteLine("Напиток приготовлен успешно");
+                Balance -= change;
+                TotalSells += neededCoins;
+            }
+            else
+            {
+                Console.WriteLine("Недостаточно ингредиентов для напитка");
+            }
+            PrintInfo();
+        }
     }
 }
