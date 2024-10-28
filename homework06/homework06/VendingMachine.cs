@@ -31,7 +31,7 @@
         }
 
         public virtual void giveChangeAndCountSells(double userCoinInput, double change, double neededCoins, int chosenDrink)
-        { 
+        {
 
         }
 
@@ -58,7 +58,7 @@
 
         public virtual void chooseDrink()
         {
-            
+
         }
     }
 }

@@ -66,6 +66,7 @@
             Console.WriteLine($"Выберите напиток (1-3)\nКапучино (1)\nЛатте (2)\nАмерикано (3)");
             int chosenDrink = Convert.ToInt32(Console.ReadLine());
 
+
             Console.WriteLine("Выберите размер порции (1-3)\n120 мл (1)\n240 мл (2)\n480 мл (3)");
             double chosenSize = Convert.ToDouble(Console.ReadLine());
             switch (chosenSize)
