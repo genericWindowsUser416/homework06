@@ -4,11 +4,10 @@
     {
         static void Main(string[] args)
         {
-            // VendingMachine machineV1 = new VendingMachine(CoffeeOptions.GetBaseCoffeeRecieptList(), "Кофейня01", 500);
-            // machineV1.chooseCoffee();
-            // machineV1.Refuel();
+            VendingMachine_Soda machineV1 = new VendingMachine_Soda(SodaOptions.GetBaseSodaReceiptList(), "Пепсикола01", 500);
+            machineV1.chooseDrink();
 
-            VendingMachine_Coffee machineV2 = new VendingMachine_Coffee(CoffeeOptions.GetBaseCoffeeReceiptList(), "Кофейня02", 600);
+            VendingMachine_Coffee machineV2 = new VendingMachine_Coffee(CoffeeOptions.GetBaseCoffeeReceiptList(), "Кофейня01", 600);
             machineV2.chooseDrink();
         }
     }

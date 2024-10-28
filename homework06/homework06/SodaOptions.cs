@@ -2,27 +2,30 @@
 {
     public class SodaOptions
     {
-        public const double CokeMax = 1000;
-        public const double ChernogolovkaMax = 1000;
-        public const double PepsiMax = 1000;
-        public static List<SodaReceipt> GetBaseDrinkReceiptList()
+        public const double ColaMax = 15;
+        public const double ChernogolovkaMax = 15;
+        public const double PepsiMax = 15;
+        public static List<SodaReceipt> GetBaseSodaReceiptList()
         {
             return new List<SodaReceipt>()
         {
             new SodaReceipt()
             {
                 Name = "Кола",
-                Coke = 1,
+                Cola = 1,
+                Cost = 90
             },
             new SodaReceipt()
             {
                 Name = "Черноголовка",
                 Chernogolovka = 1,
+                Cost = 100
             },
             new SodaReceipt()
             {
                 Name = "Пепси",
-                Pepsi = 1
+                Pepsi = 1,
+                Cost = 90
             }
         };
         }

@@ -34,9 +34,9 @@
             MilkLeft = CoffeeOptions.MilkMax;
             SugarLeft = CoffeeOptions.SugarMax;
         }
-        public override void giveChangeAndCountSells(double userCoinInput, double change, double neededCoins, int chosenCoffee)
+        public override void giveChangeAndCountSells(double userCoinInput, double change, double neededCoins, int chosenDrink)
         {
-            CoffeeReceipt crnt = CoffeeOptions.GetBaseCoffeeReceiptList()[chosenCoffee - 1];
+            CoffeeReceipt crnt = CoffeeOptions.GetBaseCoffeeReceiptList()[chosenDrink - 1];
             if (WaterLeft >= crnt.Water && CoffeeLeft >= crnt.Coffee && MilkLeft >= crnt.Milk)
             {
                 WaterLeft -= crnt.Water;
@@ -64,7 +64,7 @@
         public override void chooseDrink()
         {
             Console.WriteLine($"Выберите напиток (1-3)\nКапучино (1)\nЛатте (2)\nАмерикано (3)");
-            int chosenCoffee = Convert.ToInt32(Console.ReadLine());
+            int chosenDrink = Convert.ToInt32(Console.ReadLine());
 
             Console.WriteLine("Выберите размер порции (1-3)\n120 мл (1)\n240 мл (2)\n480 мл (3)");
             double chosenSize = Convert.ToDouble(Console.ReadLine());
@@ -91,9 +91,9 @@
                 finalCost += SugarForThisCup;
             }
 
-            finalCost += chosenSize * CoffeeOptions.GetBaseCoffeeReceiptList()[chosenCoffee - 1].Cost;
+            finalCost += chosenSize * CoffeeOptions.GetBaseCoffeeReceiptList()[chosenDrink - 1].Cost;
             Console.WriteLine($"Стоимость: {finalCost}");
-            eatCoins(Convert.ToDouble(Console.ReadLine()), finalCost, chosenCoffee);
+            eatCoins(Convert.ToDouble(Console.ReadLine()), finalCost, chosenDrink);
         }
     }
 }

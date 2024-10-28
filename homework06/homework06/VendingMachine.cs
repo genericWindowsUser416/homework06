@@ -30,19 +30,19 @@
 
         }
 
-        public virtual void giveChangeAndCountSells(double userCoinInput, double change, double neededCoins, int chosenCoffee)
+        public virtual void giveChangeAndCountSells(double userCoinInput, double change, double neededCoins, int chosenDrink)
         { 
 
         }
 
-        public void eatCoins(double userCoinInput, double neededCoins, int chosenCoffee)
+        public void eatCoins(double userCoinInput, double neededCoins, int chosenDrink)
         {
             if (userCoinInput >= neededCoins)
             {
                 double change = userCoinInput - neededCoins;
                 if (Balance >= change)
                 {
-                    giveChangeAndCountSells(userCoinInput, change, neededCoins, chosenCoffee);
+                    giveChangeAndCountSells(userCoinInput, change, neededCoins, chosenDrink);
                 }
                 else
                 {
