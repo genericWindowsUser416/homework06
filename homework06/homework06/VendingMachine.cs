@@ -4,14 +4,11 @@
     {
         protected string? Name { get; set; }
         protected double Balance { get; set; }
-        
         protected bool doAddSugar { get; set; } = false;
         protected double finalCost { get; set; } = 0;
         protected double TotalSells { get; set; } = 0;
-        protected List<CoffeeReceipt> _coffeeReceipts { get; set; }
         public VendingMachine(string inputtedName, double balance)
         {
-            // _coffeeReceipts = _coffeeReceipts;
             if (balance > 0)
             {
                 Balance = balance;
@@ -35,6 +32,7 @@
 
         public virtual void giveChangeAndCountSells(double userCoinInput, double change, double neededCoins, int chosenCoffee)
         { 
+
         }
 
         public void eatCoins(double userCoinInput, double neededCoins, int chosenCoffee)

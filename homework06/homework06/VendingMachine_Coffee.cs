@@ -14,6 +14,7 @@
         protected double MediumCupSize { get; private set; } = 1.2;
         protected double SmallCupSize { get; private set; } = 1;
         protected double SugarForThisCup { get; private set; } = -1;
+        protected List<CoffeeReceipt> _coffeeReceipts { get; set; }
         public VendingMachine_Coffee(List<CoffeeReceipt> coffeeReceipts, string inputtedName, double balance) : base(inputtedName, balance)
         {
             _coffeeReceipts = _coffeeReceipts;
