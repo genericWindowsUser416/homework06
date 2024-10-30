@@ -1,6 +1,6 @@
 ﻿namespace homework06
 {
-    public class VendingMachine
+    public abstract class VendingMachine
     {
         protected string? Name { get; set; }
         protected double Balance { get; set; }
@@ -25,15 +25,9 @@
             Console.WriteLine($"Имя автомата: {Name}\nБаланс: {Balance}\nПродано: {TotalSells}");
         }
 
-        public virtual void Refuel()
-        {
+        public abstract void Refuel();
 
-        }
-
-        public virtual void giveChangeAndCountSells(double userCoinInput, double change, double neededCoins, int chosenDrink)
-        {
-
-        }
+        public abstract void giveChangeAndCountSells(double userCoinInput, double change, double neededCoins, int chosenDrink);
 
         public void eatCoins(double userCoinInput, double neededCoins, int chosenDrink)
         {
@@ -56,9 +50,6 @@
             }
         }
 
-        public virtual void chooseDrink()
-        {
-
-        }
+        public abstract void chooseDrink();
     }
 }
