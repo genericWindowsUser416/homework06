@@ -57,5 +57,16 @@
             Console.WriteLine($"Стоимость: {finalCost}");
             eatCoins(Convert.ToDouble(Console.ReadLine()), finalCost, chosenDrink);
         }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is VendingMachine_Soda soda &&
+                   Name == soda.Name &&
+                   Balance == soda.Balance &&
+                   doAddSugar == soda.doAddSugar &&
+                   finalCost == soda.finalCost &&
+                   TotalSells == soda.TotalSells &&
+                   EqualityComparer<List<SodaReceipt>>.Default.Equals(_sodaReceipts, soda._sodaReceipts);
+        }
     }
 }
