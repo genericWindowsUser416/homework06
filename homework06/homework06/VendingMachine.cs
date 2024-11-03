@@ -24,9 +24,13 @@
         {
             Console.WriteLine($"Имя автомата: {Name}\nБаланс: {Balance}\nПродано: {TotalSells}");
         }
-        public string PrintName()
+        public string GetName()
         {
             return Name;
+        }
+        public double GetSells()
+        {
+            return TotalSells;
         }
         public abstract bool RefuelIfNeeded();
 

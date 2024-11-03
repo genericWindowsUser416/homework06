@@ -20,23 +20,40 @@
             {
                 if (m.RefuelIfNeeded())
                 {
-                    Console.WriteLine($"{m.PrintName()} был починен");
+                    Console.WriteLine($"{m.GetName()} был починен");
                 }
             }
         }
-        public void DestroyMachines(string NameOfMachineToDestroy)
+        public void DestroyMachine(string NameOfMachineToDestroy)
         {
             foreach (VendingMachine m in machines.ToList())
             {
-                if (m.PrintName() == NameOfMachineToDestroy)
+                if (m.GetName() == NameOfMachineToDestroy)
                 {
-
                     machines.Remove(m);
+                    break;
                 }
             }
+        }
+        public double GetAllSells()
+        {
+            double totalSellsAmongAllMachines = 0;
             foreach (VendingMachine m in machines)
             {
-                Console.WriteLine(m.PrintName());
+                totalSellsAmongAllMachines = totalSellsAmongAllMachines + m.GetSells();
+            }
+            Console.WriteLine(totalSellsAmongAllMachines);
+            return totalSellsAmongAllMachines;
+        }
+        public void OrderDrink(string NameOfMachineToOrder)
+        {
+            foreach (VendingMachine m in machines.ToList())
+            {
+                if (m.GetName() == NameOfMachineToOrder)
+                {
+                    m.chooseDrink();
+                    break;
+                }
             }
         }
     }
