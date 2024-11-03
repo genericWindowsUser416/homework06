@@ -7,11 +7,8 @@
         {
             machines = new List<VendingMachine>()
             {
-                new VendingMachine_Soda(SodaOptions.GetBaseSodaReceiptList(), "Gleb1", 600),
-                new VendingMachine_Coffee(CoffeeOptions.GetBaseCoffeeReceiptList(), "Oleg1", 600),
-                new VendingMachine_Coffee(CoffeeOptions.GetBaseCoffeeReceiptList(), "Oleg2", 600),
-                new VendingMachine_Soda(SodaOptions.GetBaseSodaReceiptList(), "Gleb2", 600),
-                new VendingMachine_Coffee(CoffeeOptions.GetBaseCoffeeReceiptList(), "Oleg3", 600)
+                new VendingMachine_Soda(SodaOptions.GetBaseSodaReceiptList(), "StandardSoda", 500),
+                new VendingMachine_Coffee(CoffeeOptions.GetBaseCoffeeReceiptList(), "StandardCoffee", 1000)  
             };
         }
         public void RefuelAll()
@@ -54,6 +51,23 @@
                     m.chooseDrink();
                     break;
                 }
+            }
+        }
+        public void ChooseMachineToAdd()
+        {
+            Console.WriteLine($"Выберите тип автомата\nКофе (1)\nГазировки (2)");
+            int drinkType = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Имя автомата");
+            string MachineName = Console.ReadLine();
+            Console.WriteLine("Баланс автомата");
+            double MachineBalance = Convert.ToInt32(Console.ReadLine());
+            if (drinkType == 1)
+            {
+                machines.Add(new VendingMachine_Coffee(CoffeeOptions.GetBaseCoffeeReceiptList(), MachineName, MachineBalance));
+            }
+            else if (drinkType == 2)
+            {
+                machines.Add(new VendingMachine_Soda(SodaOptions.GetBaseSodaReceiptList(), MachineName, MachineBalance));
             }
         }
     }

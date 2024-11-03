@@ -7,10 +7,13 @@
 
             VendingManager mainManager = new VendingManager();
             mainManager.CreatingMachines();
-            mainManager.DestroyMachine("Oleg1");
-            mainManager.OrderDrink("Oleg2");
+            
+            mainManager.DestroyMachine("StandardSoda");
+            mainManager.ChooseMachineToAdd();
+            mainManager.OrderDrink("Gleb");
             mainManager.GetAllSells();
             mainManager.RefuelAll();
+            //mainManager.AddMachine()
             //VendingMachine_Soda machineSoda01 = new VendingMachine_Soda(SodaOptions.GetBaseSodaReceiptList(), "Пепсикола01", 500);
             //machineSoda01.chooseDrink();
             //
