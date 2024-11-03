@@ -24,8 +24,11 @@
         {
             Console.WriteLine($"Имя автомата: {Name}\nБаланс: {Balance}\nПродано: {TotalSells}");
         }
-
-        public abstract void Refuel();
+        public string PrintName()
+        {
+            return Name;
+        }
+        public abstract bool RefuelIfNeeded();
 
         public abstract void giveChangeAndCountSells(double userCoinInput, double change, double neededCoins, int chosenDrink);
 

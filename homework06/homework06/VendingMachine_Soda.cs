@@ -18,11 +18,19 @@
             Console.WriteLine($"Имя автомата: {Name}\nБаланс: {Balance}\nПродано: {TotalSells}\nКола: {ColaLeft}/{SodaOptions.ColaMax}\nЧерноголовка: {ChernogolovkaLeft}/{SodaOptions.ChernogolovkaMax}\nПепси: {PepsiLeft}/{SodaOptions.PepsiMax}");
         }
 
-        public override void Refuel()
+        public override bool RefuelIfNeeded()
         {
-            ColaLeft = SodaOptions.ColaMax;
-            ChernogolovkaLeft = SodaOptions.ChernogolovkaMax;
-            PepsiLeft = SodaOptions.PepsiMax;
+            bool result = false;
+            if (ColaLeft < SodaOptions.ColaMax &&
+                ChernogolovkaLeft < SodaOptions.ChernogolovkaMax &&
+                PepsiLeft < SodaOptions.PepsiMax)
+            {
+                ColaLeft = SodaOptions.ColaMax;
+                ChernogolovkaLeft = SodaOptions.ChernogolovkaMax;
+                PepsiLeft = SodaOptions.PepsiMax;
+                result = true;
+            }
+            return result;
         }
 
         public override void giveChangeAndCountSells(double userCoinInput, double change, double neededCoins, int chosenDrink)
